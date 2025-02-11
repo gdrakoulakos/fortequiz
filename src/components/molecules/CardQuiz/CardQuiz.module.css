@@ -1,4 +1,33 @@
-.quizCard{
-    width: 10%;
+.quizCardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 10px;
+    border: rgba(255, 255, 255, 0.702) solid 5px;
+    border-radius: 10%;
+    padding: 10px;
+    background-image: linear-gradient(70deg, #eae9ff 0%, #c3c3ff 50%, #80eaff 100%);
+    width: 170px;
+    text-align: center;  
+}
+
+.cardTop {
+    font-size:xx-large;
+    border: rgba(19, 10, 139, 0.109) solid 5px;
+    border-radius: 50%;
+    width: 60%;
+}
+
+.cardTop h1{
+    margin: 0;
+    padding: 10px;
+}
+
+.cardBottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardBottom h3{ 
+    height: 40px;
 }
