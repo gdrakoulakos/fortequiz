@@ -1,4 +1,4 @@
-import quizStyles from "../pages/quiz.module.css"; // Keep quiz styles
+import quizStyles from "../pages/quiz.module.css"; 
 import buttonStyles from "@/components/atoms/ButtonAnswer/ButtonAnswer.module.css"; // Import button styles
 import notationAndStructure from "../data/quizQuestions/theory/notationAndStructure";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export default function Quiz() {
         ...prev[questionIndex],
         [answerIndex]:
           answer === correctAnswer
-            ? buttonStyles.correctAnswer // Use button styles
+            ? buttonStyles.correctAnswer 
             : buttonStyles.incorrectAnswer,
       },
     }));
@@ -28,6 +28,7 @@ export default function Quiz() {
   return (
     <div className={quizStyles.quizContainer}>
       <h1>{notationAndStructure.category}</h1>
+      <h1>{notationAndStructure.subcategory}</h1>
       <h2>🕒 {notationAndStructure.time} seconds</h2>
       <h2>Correct Answers: {totalCorrectAnswers}</h2>
 
