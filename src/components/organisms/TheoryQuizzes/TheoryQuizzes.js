@@ -1,23 +1,40 @@
 import CardQuiz from "@/components/molecules/CardQuiz/CardQuiz";
-import notationAndStructure from "../../../data/quizQuestions/theory/notationAndStructure";
-import chordsAndHarmony from "../../../data/quizQuestions/theory/chordsAndHarmony";
+
 import styles from "../TheoryQuizzes/TheoryQuizzes.module.css";
 
-export default function NotationAndStructure() {
+export default function TheoryQuizzes({
+  notationAndStructureData,
+  chordsAndHarmonyData,
+}) {
+  console.log("chordsAndHarmonyData is ", chordsAndHarmonyData);
+
+  const cardsData = [
+    {
+      id: 1,
+      quizCategory: "notationAndStructure",
+      subcategory: notationAndStructureData.subcategory,
+      description: notationAndStructureData.description,
+    },
+    {
+      id: 2,
+      quizCategory: "chordsAndHarmony",
+      subcategory: chordsAndHarmonyData.subcategory,
+      description: chordsAndHarmonyData.description,
+    },
+  ];
+
   return (
     <div className={styles.allQuizContainer}>
-      <h1>{notationAndStructure.category}</h1>
+      <h1>{notationAndStructureData.category}</h1>
       <div className={styles.cardsContainer}>
-        <CardQuiz
-          quizCategory={"notationAndStructure"}
-          name={notationAndStructure.subcategory}
-          description={notationAndStructure.description}
-        />
-        <CardQuiz
-          quizCategory={"chordsAndHarmony"}
-          name={chordsAndHarmony.subcategory}
-          description={chordsAndHarmony.description}
-        />
+        {cardsData.map((card) => (
+          <CardQuiz
+            id={card.id}
+            quizCategory={card.quizCategory}
+            name={card.subcategory}
+            description={card.description}
+          />
+        ))}
       </div>
     </div>
   );
