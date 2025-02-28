@@ -11,17 +11,15 @@ import HistoryQuizzes from "@/components/organisms/HistoryQuizzes/HistoryQuizzes
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <WelcomeBanner />
-        <TheoryQuizzes
-          notationAndStructureData={notationAndStructure}
-          chordsAndHarmonyData={chordsAndHarmony}
-        />
-        <HistoryQuizzes
-          baroqueAndClassicalErasData={baroqueAndClassicalEras}
-          romanticAndModernErasData={romanticAndModernEras}
-        />
-      </main>
+      <WelcomeBanner />
+      <TheoryQuizzes
+        notationAndStructureData={notationAndStructure}
+        chordsAndHarmonyData={chordsAndHarmony}
+      />
+      <HistoryQuizzes
+        baroqueAndClassicalErasData={baroqueAndClassicalEras}
+        romanticAndModernErasData={romanticAndModernEras}
+      />
       <Footer />
     </div>
   );

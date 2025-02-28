@@ -5,7 +5,6 @@ import { QuizContext } from "../../../context/AppContext";
 
 export default function ButtonPlay({ quizCategory }) {
   const { setCategory, category } = QuizContext();
-  console.log("category is", category);
   return (
     <div className={styles.buttonContainer}>
       <Link href={"/quiz"}>
