@@ -9,31 +9,16 @@ export default function NotationAndStructure() {
       <h1>{notationAndStructure.category}</h1>
       <div className={styles.cardsContainer}>
         <CardQuiz
-          data={notationAndStructure}
+          quizCategory={"notationAndStructure"}
           name={notationAndStructure.subcategory}
           description={notationAndStructure.description}
         />
         <CardQuiz
-          data={chordsAndHarmony}
+          quizCategory={"chordsAndHarmony"}
           name={chordsAndHarmony.subcategory}
           description={chordsAndHarmony.description}
         />
       </div>
-
-      {/* {cardQuizData.categories.map((category) => (
-        <div key={category.id} className={styles.categorySection}>
-          <h2 className={styles.categoryTitle}>{category.name}</h2>
-          <div className={styles.quizContainer}>
-            {category.quizzes.map((quiz) => (
-              <CardQuiz
-                key={quiz.id}
-                quizName={quiz.name}
-                quizDescription={quiz.description}
-              />
-            ))}
-          </div>
-        </div>
-      ))} */}
     </div>
   );
 }
