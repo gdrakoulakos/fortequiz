@@ -7,7 +7,6 @@ import WelcomeBanner from "@/components/organisms/WelcomeBanner/WelcomeBanner";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <Header />
       <main className={styles.main}>
         <WelcomeBanner />
         <TheoryQuizzes />
