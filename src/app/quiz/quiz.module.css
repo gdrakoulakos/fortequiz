@@ -14,3 +14,11 @@
     flex-wrap: wrap;
     width: auto;
 }
+
+.questionBlock {
+    width: 90%;
+    border: solid rgb(204, 204, 204);
+    border-radius: 5%;
+    margin: 8px;
+    padding: 5px 5px 20px 5px;
+}

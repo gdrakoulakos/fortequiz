@@ -5,13 +5,15 @@
     height: 50px;
     font-size: large;
     background-color: white; /* Default background */
-    border: 1px solid black;
+    border: 1px solid rgb(190, 190, 190);
 }
 
 .correctAnswer {
-    background-color: green;
+    background-color: #dcfede;
+    color: black;
 }
 
 .incorrectAnswer {
-    background-color: red;
+    background-color: #ffdcdc;
+    color: black;
 }

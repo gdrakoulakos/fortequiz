@@ -11,16 +11,20 @@ export default function Quiz() {
   const { selectedQuiz } = QuizContext();
 
   const handleAnswer = (answer, questionIndex, answerIndex, correctAnswer) => {
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [questionIndex]: {
-        ...prev[questionIndex],
-        [answerIndex]:
-          answer === correctAnswer
+    setSelectedAnswers((prev) => {
+      const isCorrect = answer === correctAnswer;
+
+      return {
+        ...prev,
+        [questionIndex]: {
+          ...prev[questionIndex],
+          [answerIndex]: isCorrect
             ? buttonStyles.correctAnswer
             : buttonStyles.incorrectAnswer,
-      },
-    }));
+          correctIndex: isCorrect ? null : correctAnswer,
+        },
+      };
+    });
 
     if (answer === correctAnswer) {
       setTotalCorrectAnswers((prev) => prev + 1);
@@ -32,7 +36,6 @@ export default function Quiz() {
       <div className={quizStyles.quizContainer}>
         <h1>{selectedQuiz.category}</h1>
         <h1>{selectedQuiz.subcategory}</h1>
-        <h2>🕒 {selectedQuiz.time} seconds</h2>
         <h2>Correct Answers: {totalCorrectAnswers}</h2>
 
         {selectedQuiz?.questions?.map((question, questionIndex) => (
@@ -47,7 +50,10 @@ export default function Quiz() {
                 <span>
                   <ButtonAnswer
                     className={`${buttonStyles.answerButton} ${
-                      selectedAnswers[questionIndex]?.[answerIndex] || ""
+                      selectedAnswers[questionIndex]?.[answerIndex] ||
+                      (selectedAnswers[questionIndex]?.correctIndex === answer
+                        ? buttonStyles.correctAnswer
+                        : "")
                     }`}
                     onClick={() =>
                       handleAnswer(
