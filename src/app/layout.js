@@ -14,10 +14,22 @@ const nunitoSans = Nunito_Sans({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={nunitoSans.variable}>
-      <body style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Header />
-        <AppProvider>{children}</AppProvider>
-        <Footer />
+      <body
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100vw",
+          overflowX: "hidden",
+          padding: "0",
+          margin: "0"
+        }}
+      >
+        <AppProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );
