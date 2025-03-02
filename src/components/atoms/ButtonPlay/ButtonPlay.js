@@ -8,7 +8,7 @@ export default function ButtonPlay({ id }) {
   return (
     <div className={styles.buttonContainer}>
       <Link href={"/quiz"}>
-        <button onClick={() => setSelectedQuizId(id)}>Play Now</button>
+        <button onClick={() => setSelectedQuizId(id)}>Παίξε!</button>
       </Link>
     </div>
   );
