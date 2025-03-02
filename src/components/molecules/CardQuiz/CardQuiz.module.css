@@ -5,11 +5,13 @@
     margin: 5px;
     border: rgba(255, 255, 255, 0.702) solid 5px;
     border-radius: 10%;
-    padding: 10px 5px 10px 5px;
     background-image: linear-gradient(70deg, #eae9ff 0%, #c3c3ff 50%, #80eaff 100%);
-    width: 140px;
     height: 230px;
     text-align: center;  
+    flex: 0 0 auto; /* Ensures cards don't shrink */
+    scroll-snap-align: start; /* Snaps cards into position */
+    max-width: 140px; /* Prevents overly large cards */
+    padding: 10px 0px 10px 0px;
 }
 
 .cardTop {
