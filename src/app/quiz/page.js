@@ -35,12 +35,12 @@ export default function Quiz() {
     selectedQuiz && (
       <div className={quizStyles.quizContainer}>
         <h1>{selectedQuiz.category}</h1>
-        <h1>{selectedQuiz.subcategory}</h1>
-        <h2>Correct Answers: {totalCorrectAnswers}</h2>
+        <h2>{selectedQuiz.subcategory}</h2>
+        <h2>Σωστές Απαντήσεις: {totalCorrectAnswers}</h2>
 
         {selectedQuiz?.questions?.map((question, questionIndex) => (
           <div key={questionIndex} className={quizStyles.questionBlock}>
-            <h2>{`${question.id}. ${question.title}`}</h2>
+            <h3>{`${question.id}. ${question.title}`}</h3>
 
             {question.availableAnswers.map((answer, answerIndex) => (
               <div
