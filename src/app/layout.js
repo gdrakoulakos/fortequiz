@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
           width: "100vw",
           overflowX: "hidden",
           padding: "0",
-          margin: "0"
+          margin: "0",
+          background:
+            "linear-gradient(rgb(253 255 211) 0%, rgb(255, 102, 153) 20%, rgb(102, 204, 255) 100%)",
         }}
       >
         <AppProvider>
