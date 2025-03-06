@@ -7,6 +7,26 @@
     text-align: center;
 }
 
+.questionsInfo {
+    width: 100%;
+    position: fixed;
+    background-color: #e9e9e9e4;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 30% 30%;
+}
+
+.questionsInfoTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.allQuestionsContainer {
+    margin-top: 100px;
+
+}
+
 .questionBlock {
     width: 90%;
     border: solid rgba(204, 204, 204, 0.451);
@@ -16,7 +36,7 @@
     background-color: rgba(255, 255, 255, 0.18);
 }
 
-.quizAnswersContainer {
+.answersContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -24,5 +44,7 @@
     width: auto;
     
 }
+
+
 
 
