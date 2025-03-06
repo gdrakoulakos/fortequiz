@@ -37,7 +37,7 @@ export default function Quiz() {
         <div className={styles.questionsInfo}>
         <div className={styles.questionsInfoTop}>
           <h2>{selectedQuiz.category}</h2>
-          <h3>{selectedQuiz.subcategory}</h3>
+          <h2>{selectedQuiz.subcategory}</h2>
           </div>
           <div>
             Σκορ: {totalCorrectAnswers} / {selectedQuiz.questions.length}

@@ -10,9 +10,9 @@ export default function Header() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  function toggleMenu() {
+  const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
-  }
+  };
 
   return (
     <>
@@ -26,6 +26,7 @@ export default function Header() {
               alt="Menu icon"
             />
           </div>
+
           {isMenuOpen && (
             <div className={styles.openList}>
               <ul
@@ -33,7 +34,7 @@ export default function Header() {
                 style={{ display: isMenuOpen ? "block" : "none" }}
               >
                 {allQuizCategories.map((title, index) => (
-                  <li key={index}>
+                  <li key={index} onClick={toggleMenu}>
                     <Link href={"/"}>{title}</Link>
                   </li>
                 ))}
