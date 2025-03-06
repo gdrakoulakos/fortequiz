@@ -8,12 +8,14 @@ import { QuizContext } from "../../context/AppContext";
 export default function Quiz() {
   const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [progressBarWidth, setProgressBarWidth] = useState(0);
   const { selectedQuiz } = QuizContext();
 
   const handleAnswer = (answer, questionIndex, answerIndex, correctAnswer) => {
+    setProgressBarWidth((prev) => prev + 100 / selectedQuiz.questions.length);
     setSelectedAnswers((prev) => {
       const isCorrect = answer === correctAnswer;
-
+      progressBarWidth + 8;
       return {
         ...prev,
         [questionIndex]: {
@@ -35,12 +37,20 @@ export default function Quiz() {
     selectedQuiz && (
       <div className={styles.quizContainer}>
         <div className={styles.questionsInfo}>
-        <div className={styles.questionsInfoTop}>
-          <h2>{selectedQuiz.category}</h2>
-          <h2>{selectedQuiz.subcategory}</h2>
+          <div className={styles.questionsInfoTop}>
+            <h3>{selectedQuiz.category}</h3>
+            <h3>{selectedQuiz.subcategory}</h3>
           </div>
-          <div>
-            Σκορ: {totalCorrectAnswers} / {selectedQuiz.questions.length}
+          <div className={styles.questionsInfoBottom}>
+            <div className={styles.progressBarBorder}>
+              <div
+                className={styles.progressBar}
+                style={{ width: `${progressBarWidth}%` }}
+              ></div>
+            </div>
+            <div className={styles.score}>
+              Σκορ: {totalCorrectAnswers} / {selectedQuiz.questions.length}
+            </div>
           </div>
         </div>
         <div className={styles.allQuestionsContainer}>

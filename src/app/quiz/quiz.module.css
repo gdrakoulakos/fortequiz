@@ -17,9 +17,32 @@
 }
 
 .questionsInfoTop {
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.questionsInfoBottom {
+    height: 50px;
+    justify-items: center;
+}
+
+.progressBarBorder {
+    width: 90%;
+    height: 15px;
+    border: solid #ffd0369d;
+    border-radius: 20px
+
+}
+.progressBar {
+    height: 15px;
+    background: linear-gradient(90deg, rgb(255, 198, 123) 0%,rgb(255, 223, 117)) 50%, rgb(255, 255, 136) 100%;
+    border-radius: 20px
+}
+
+.score {
+   padding: 5px; 
 }
 
 .allQuestionsContainer {
