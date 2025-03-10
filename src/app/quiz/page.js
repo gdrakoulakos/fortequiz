@@ -1,21 +1,23 @@
 "use client";
 import styles from "./quiz.module.css";
 import buttonStyles from "@/components/atoms/ButtonAnswer/ButtonAnswer.module.css"; // Import button styles
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonAnswer from "@/components/atoms/ButtonAnswer/ButtonAnswer";
 import { QuizContext } from "../../context/AppContext";
+import PopUpResults from "@/components/molecules/PopUpResults/PopUpResults";
 
 export default function Quiz() {
   const [totalCorrectAnswers, setTotalCorrectAnswers] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [progressBarWidth, setProgressBarWidth] = useState(0);
+  const [completionStatus, setCompletionStatus] = useState(0);
+  const [showPopUpResults, setShowPopUpResults] = useState(false);
   const { selectedQuiz } = QuizContext();
 
   const handleAnswer = (answer, questionIndex, answerIndex, correctAnswer) => {
-    setProgressBarWidth((prev) => prev + 100 / selectedQuiz.questions.length);
+    setCompletionStatus((prev) => prev + 100 / selectedQuiz.questions.length);
     setSelectedAnswers((prev) => {
       const isCorrect = answer === correctAnswer;
-      progressBarWidth + 8;
+      completionStatus + 8;
       return {
         ...prev,
         [questionIndex]: {
@@ -33,64 +35,81 @@ export default function Quiz() {
     }
   };
 
-  return (
-    selectedQuiz && (
-      <div className={styles.quizContainer}>
-        <div className={styles.questionsInfo}>
-          <div className={styles.questionsInfoTop}>
-            <h3>{selectedQuiz.category}</h3>
-            <h3>{selectedQuiz.subcategory}</h3>
-          </div>
-          <div className={styles.questionsInfoBottom}>
-            <div className={styles.progressBarBorder}>
-              <div
-                className={styles.progressBar}
-                style={{ width: `${progressBarWidth}%` }}
-              >{`${progressBarWidth}%`}</div>
-            </div>
-            <div className={styles.score}>
-              Σωστές Απαντήσεις: {totalCorrectAnswers} /{" "}
-              {selectedQuiz.questions.length}
-            </div>
-          </div>
-        </div>
-        <div className={styles.allQuestionsContainer}>
-          {selectedQuiz?.questions?.map((question, questionIndex) => (
-            <div key={questionIndex} className={styles.questionBlock}>
-              <h3>{`${question.id}. ${question.title}`}</h3>
+  useEffect(() => {
+    if (completionStatus === 100) {
+      setShowPopUpResults(true);
+    }
+  }, [completionStatus]);
 
-              {question.availableAnswers.map((answer, answerIndex) => (
-                <div key={answerIndex} className={styles.answersContainer}>
-                  <span>
-                    <ButtonAnswer
-                      className={`${buttonStyles.answerButton} ${
-                        selectedAnswers[questionIndex]?.[answerIndex] ||
-                        (selectedAnswers[questionIndex]?.correctIndex === answer
-                          ? buttonStyles.correctAnswer
-                          : "")
-                      }`}
-                      onClick={() =>
-                        handleAnswer(
-                          answer,
-                          questionIndex,
-                          answerIndex,
-                          question.correctAnswer
-                        )
-                      }
-                      disabled={
-                        Object.keys(selectedAnswers[questionIndex] || {})
-                          .length > 0
-                      }
-                    >
-                      {answer}
-                    </ButtonAnswer>
-                  </span>
-                </div>
-              ))}
+  return (
+    <>
+      {showPopUpResults && (
+        <PopUpResults
+          resultMessage={"Μπράβο! Τα πήγες πολύ καλά!"}
+          correctAnswers={`${totalCorrectAnswers}/ ${" "}
+                ${selectedQuiz.questions.length}`}
+          onClick={() => setShowPopUpResults(false)}
+        />
+      )}
+      {selectedQuiz && (
+        <div className={styles.quizContainer}>
+          <div className={styles.questionsInfo}>
+            <div className={styles.questionsInfoTop}>
+              <h3>{selectedQuiz.category}</h3>
+              <h3>{selectedQuiz.subcategory}</h3>
             </div>
-          ))}
+            <div className={styles.questionsInfoBottom}>
+              <div className={styles.progressBarBorder}>
+                <div
+                  className={styles.progressBar}
+                  style={{ width: `${completionStatus}%` }}
+                >{`${completionStatus}%`}</div>
+              </div>
+              <div className={styles.score}>
+                Σωστές Απαντήσεις: {totalCorrectAnswers} /{" "}
+                {selectedQuiz.questions.length}
+              </div>
+            </div>
+          </div>
+          <div className={styles.allQuestionsContainer}>
+            {selectedQuiz?.questions?.map((question, questionIndex) => (
+              <div key={questionIndex} className={styles.questionBlock}>
+                <h3>{`${question.id}. ${question.title}`}</h3>
+
+                {question.availableAnswers.map((answer, answerIndex) => (
+                  <div key={answerIndex} className={styles.answersContainer}>
+                    <span>
+                      <ButtonAnswer
+                        className={`${buttonStyles.answerButton} ${
+                          selectedAnswers[questionIndex]?.[answerIndex] ||
+                          (selectedAnswers[questionIndex]?.correctIndex ===
+                          answer
+                            ? buttonStyles.correctAnswer
+                            : "")
+                        }`}
+                        onClick={() =>
+                          handleAnswer(
+                            answer,
+                            questionIndex,
+                            answerIndex,
+                            question.correctAnswer
+                          )
+                        }
+                        disabled={
+                          Object.keys(selectedAnswers[questionIndex] || {})
+                            .length > 0
+                        }
+                      >
+                        {answer}
+                      </ButtonAnswer>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    )
+      )}
+    </>
   );
 }
