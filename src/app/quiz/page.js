@@ -46,10 +46,11 @@ export default function Quiz() {
               <div
                 className={styles.progressBar}
                 style={{ width: `${progressBarWidth}%` }}
-              ></div>
+              >{`${progressBarWidth}%`}</div>
             </div>
             <div className={styles.score}>
-              Σκορ: {totalCorrectAnswers} / {selectedQuiz.questions.length}
+              Σωστές Απαντήσεις: {totalCorrectAnswers} /{" "}
+              {selectedQuiz.questions.length}
             </div>
           </div>
         </div>
