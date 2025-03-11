@@ -54,11 +54,12 @@ export default function Quiz() {
 
     setTimeout(() => {
       scrollToNextQuestion(questionIndex + 1);
-    }, 200);
+    }, 1000);
 
     if (answer === correctAnswer) {
       setTotalCorrectAnswers((prev) => prev + 1);
     }
+    setScorePercentage((totalCorrectAnswers / totalAvailableQuestions) * 100);
   };
 
   useEffect(() => {
@@ -88,10 +89,6 @@ export default function Quiz() {
       }
     }
   }, [completionStatus]);
-
-  useEffect(() => {
-    setScorePercentage((totalCorrectAnswers / totalAvailableQuestions) * 100);
-  }, [totalCorrectAnswers]);
 
   return (
     <>
