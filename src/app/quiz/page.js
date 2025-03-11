@@ -13,8 +13,9 @@ export default function Quiz() {
   const [showPopUpResults, setShowPopUpResults] = useState(false);
   const [congratulationsMessage, setCongratulationsMessage] = useState(null);
   const [congratsImg, setCongratsImg] = useState(null);
-  const { selectedQuiz } = QuizContext();
   const [scorePercentage, setScorePercentage] = useState(null);
+  const { selectedQuiz } = QuizContext();
+
   const totalAvailableQuestions = selectedQuiz.questions.length;
 
   const handleAnswer = (answer, questionIndex, answerIndex, correctAnswer) => {
@@ -48,7 +49,9 @@ export default function Quiz() {
         setCongratulationsMessage("Είσαι αληθινός γνώστης! Συνέχισε έτσι!");
         setCongratsImg("/images/bravo4.gif");
       } else if (scorePercentage >= 70) {
-        setCongratulationsMessage("Πολύ καλά! Είσαι σε καλό δρόμο!");
+        setCongratulationsMessage(
+          "Εξαιρετική προσπάθεια! Συνέχισε έτσι και θα φτάσεις στην κορυφή!"
+        );
         setCongratsImg("/images/bravo3.png");
       } else if (scorePercentage >= 40) {
         setCongratulationsMessage("Καλή προσπάθεια! Μπορείς ακόμα καλύτερα!");
