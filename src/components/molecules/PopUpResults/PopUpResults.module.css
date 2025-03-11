@@ -27,7 +27,8 @@
 }
 
 .congratulationsMessage{
-    font-size: large;    
+    font-size: large;   
+    text-align: center; 
 }
 
 .resultMessage {

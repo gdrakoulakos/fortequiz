@@ -7,22 +7,18 @@ export default function PopUpResults({
   resultMessage,
   correctAnswers,
   onClick,
+  congratsImg,
 }) {
   return (
     <div className={styles.blurBackground}>
       <div className={styles.popUpResultsContainer}>
-        <Image
-          src="/images/bravo.png"
-          width={220}
-          height={220}
-          alt="Bravo icon"
-        />
+        <Image src={congratsImg} width={220} height={220} alt="Bravo icon" />
         <div className={styles.congratulationsMessage}>
           {congratulationsMessage}
         </div>
         <div className={styles.resultMessage}>{resultMessage}</div>
         <div className={styles.correctAnswers}>{correctAnswers}</div>
-        <ButtonOk onClick={onClick} buttonText={"OK"}/>
+        <ButtonOk onClick={onClick} buttonText={"OK"} />
       </div>
     </div>
   );

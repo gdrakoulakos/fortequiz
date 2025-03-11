@@ -11,10 +11,14 @@ export default function Quiz() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [completionStatus, setCompletionStatus] = useState(0);
   const [showPopUpResults, setShowPopUpResults] = useState(false);
+  const [congratulationsMessage, setCongratulationsMessage] = useState(null);
+  const [congratsImg, setCongratsImg] = useState(null);
   const { selectedQuiz } = QuizContext();
+  const [scorePercentage, setScorePercentage] = useState(null);
+  const totalAvailableQuestions = selectedQuiz.questions.length;
 
   const handleAnswer = (answer, questionIndex, answerIndex, correctAnswer) => {
-    setCompletionStatus((prev) => prev + 100 / selectedQuiz.questions.length);
+    setCompletionStatus((prev) => prev + 100 / totalAvailableQuestions);
     setSelectedAnswers((prev) => {
       const isCorrect = answer === correctAnswer;
       completionStatus + 8;
@@ -40,17 +44,37 @@ export default function Quiz() {
       setTimeout(() => {
         setShowPopUpResults(true);
       }, 500);
+      if (scorePercentage >= 90) {
+        setCongratulationsMessage("Είσαι αληθινός γνώστης! Συνέχισε έτσι!");
+        setCongratsImg("/images/bravo4.gif");
+      } else if (scorePercentage >= 70) {
+        setCongratulationsMessage("Πολύ καλά! Είσαι σε καλό δρόμο!");
+        setCongratsImg("/images/bravo3.png");
+      } else if (scorePercentage >= 40) {
+        setCongratulationsMessage("Καλή προσπάθεια! Μπορείς ακόμα καλύτερα!");
+        setCongratsImg("/images/bravo2.png");
+      } else {
+        setCongratulationsMessage(
+          "Μην το βάζεις κάτω! Προσπάθησε ξανά και θα τα καταφέρεις!"
+        );
+        setCongratsImg("/images/bravo1.png");
+      }
     }
   }, [completionStatus]);
+
+  useEffect(() => {
+    setScorePercentage((totalCorrectAnswers / totalAvailableQuestions) * 100);
+  }, [totalCorrectAnswers]);
 
   return (
     <>
       {showPopUpResults && (
         <PopUpResults
-          congratulationsMessage={"Μπράβο! Τα πήγες πολύ καλά!"}
+          congratsImg={congratsImg}
+          congratulationsMessage={congratulationsMessage}
           resultMessage={"Το σκορ σου είναι:"}
           correctAnswers={`${totalCorrectAnswers} /
-                ${selectedQuiz.questions.length}`}
+                ${totalAvailableQuestions}`}
           onClick={() => setShowPopUpResults(false)}
         />
       )}
@@ -70,7 +94,7 @@ export default function Quiz() {
               </div>
               <div className={styles.score}>
                 Σωστές Απαντήσεις: {totalCorrectAnswers} /{" "}
-                {selectedQuiz.questions.length}
+                {totalAvailableQuestions}
               </div>
             </div>
           </div>
