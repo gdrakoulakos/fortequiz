@@ -26,7 +26,7 @@ export default function Quiz() {
     if (!el) return;
     const top = el.getBoundingClientRect().top + window.pageYOffset;
     window.scrollTo({
-      top: top - 200,
+      top: top - 160,
       behavior: "smooth",
     });
   };
