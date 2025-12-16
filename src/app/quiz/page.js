@@ -137,8 +137,8 @@ export default function Quiz() {
                   src={`/images/questions/music/${question.img}`}
                   alt="question image"
                   className={styles.questionImage}
-                  width={200}
-                  height={100}
+                  width={240}
+                  height={120}
                 />}
 
                 {question.availableAnswers.map((answer, answerIndex) => (
