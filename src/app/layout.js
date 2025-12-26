@@ -1,20 +1,16 @@
 "use client";
-import { Nunito_Sans } from "next/font/google";
+import { commissioner } from "./fonts";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
 import Header from "@/components/organisms/Header/Header";
 import Footer from "@/components/organisms/Footer/Footer";
 
-const nunitoSans = Nunito_Sans({
-  weight: "300",
-  subsets: ["latin"],
-  variable: "--font-nunito-sans",
-});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={nunitoSans.variable}>
+    <html lang="el">
       <body
+      className={commissioner.className}
         style={{
           display: "flex",
           flexDirection: "column",
