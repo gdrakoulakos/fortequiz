@@ -10,6 +10,9 @@ export default function ButtonPlay({ id }) {
       <Link href={"/quiz"}>
         <button onClick={() => setSelectedQuizId(id)}>Παίξε!</button>
       </Link>
+      <Link href={"/q"}>
+        <button onClick={() => setSelectedQuizId(id)}>Test!</button>
+      </Link>
     </div>
   );
 }

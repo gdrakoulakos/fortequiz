@@ -1,5 +1,16 @@
+import { QuizContext } from "@/context/AppContext";
 import styles from "./CompletionStatus.module.css";
 
 export default function CompletionStatus() {
-  return <progress className={styles.progress} max="10" value="6"></progress>;
+  const { selectedQuiz, displayedQuestionIndex } = QuizContext();
+  const quizQuestionCounter = selectedQuiz?.questions.length;
+  const quizQuestionCurrentNum = displayedQuestionIndex + 1;
+
+  return (
+    <progress
+      className={styles.progress}
+      max={quizQuestionCounter}
+      value={quizQuestionCurrentNum}
+    ></progress>
+  );
 }

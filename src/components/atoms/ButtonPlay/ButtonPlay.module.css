@@ -1,16 +1,17 @@
-.buttonContainer{
-    display: flex;
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.buttonContainer button{
-    height: 40px;
-    width: 100px;
-    border-radius: 20px;
-    background-color: #00ddff2d;
-    border: solid rgba(0, 110, 255, 0.73) 3px
+.buttonContainer button {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: #00ddff2d;
+  border: solid rgba(0, 110, 255, 0.73) 3px;
 }
 
 .buttonContainer button:hover {
-    border: solid rgba(0, 110, 255, 0.157) 3px;
-    cursor:pointer;
+  border: solid rgba(0, 110, 255, 0.157) 3px;
+  cursor: pointer;
 }

@@ -1,3 +1,4 @@
+"use client";
 import styles from "./q.module.css";
 import QuizCard from "@/components/organisms/QuizCard/QuizCard";
 
