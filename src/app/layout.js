@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
           margin: "0",
           backgroundImage: "url('/images/background2.webp')",
           backgroundSize: "contain",
+          backgroundAttachment: "fixed",
         }}
       >
         <CookiesProvider>

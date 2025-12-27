@@ -3,26 +3,45 @@ import QuizQuestion from "@/components/atoms/QuizQuestion/QuizQuestion";
 import ButtonAnswer from "@/components/atoms/ButtonAnswer/ButtonAnswer";
 import QuestionImage from "@/components/atoms/QuestionImage/QuestionImage";
 import { QuizContext } from "@/context/AppContext";
-import { useEffect } from "react";
 
 export default function QuestionAndAnswersCard() {
-  const { selectedQuiz, setDisplayedQuestionIndex, displayedQuestionIndex } =
-    QuizContext();
+  const {
+    selectedQuiz,
+    setDisplayedQuestionIndex,
+    displayedQuestionIndex,
+    clickedAnswersResults,
+    setClickedAnswersResults,
+  } = QuizContext();
   const availableAnswers =
     selectedQuiz?.questions[displayedQuestionIndex]?.availableAnswers;
 
-  console.log("displayedQuestionIndex", displayedQuestionIndex);
-
-  const handleClickedAnswer = (answer) => {
-    console.log("Clicked answer ", answer);
+  const handleClickedAnswer = (clickedAnswer) => {
+    if (clickedAnswersResults.totalAnswers < 10) {
+      if (
+        clickedAnswer ===
+        selectedQuiz?.questions[displayedQuestionIndex]?.correctAnswer
+      ) {
+        setClickedAnswersResults((prev) => ({
+          ...prev,
+          correctAnswers: prev.correctAnswers + 1,
+          totalAnswers: prev.totalAnswers + 1,
+        }));
+        console.log("Correct answer!");
+      } else {
+        setClickedAnswersResults((prev) => ({
+          ...prev,
+          incorrectAnswers: prev.incorrectAnswers + 1,
+          totalAnswers: prev.totalAnswers + 1,
+        }));
+        console.log("Wrong answer!");
+      }
+    }
     if (displayedQuestionIndex < 9) {
-      setDisplayedQuestionIndex((prev) => prev + 1);
+      setTimeout(() => {
+        setDisplayedQuestionIndex((prev) => prev + 1);
+      }, 200);
     }
   };
-
-  useEffect(() => {
-    console.log("availableAnswers", availableAnswers);
-  }, [availableAnswers]);
 
   return (
     <div className={styles.section}>

@@ -7,7 +7,6 @@ export default function QuizHeader() {
   const quizSubcategory = selectedQuiz?.subcategory;
   const quizQuestionCounter = selectedQuiz?.questions.length;
   const quizQuestionCurrentNum = displayedQuestionIndex + 1;
-  console.log("selectedQuiz", selectedQuiz);
 
   return (
     <div className={styles.quizHeader}>

@@ -6,10 +6,19 @@ import { QuizContext } from "../context/AppContext";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { allQuizCategories, setDisplayedQuestionIndex } = QuizContext();
+  const {
+    allQuizCategories,
+    setDisplayedQuestionIndex,
+    setClickedAnswersResults,
+  } = QuizContext();
 
   useEffect(() => {
     setDisplayedQuestionIndex(0);
+    setClickedAnswersResults({
+      correctAnswers: 0,
+      incorrectAnswers: 0,
+      totalAnswers: 0,
+    });
   }, []);
 
   return (

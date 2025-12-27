@@ -8,6 +8,11 @@ export const AppProvider = ({ children }) => {
   const [selectedQuizId, setSelectedQuizId] = useState(null);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [displayedQuestionIndex, setDisplayedQuestionIndex] = useState(0);
+  const [clickedAnswersResults, setClickedAnswersResults] = useState({
+    correctAnswers: 0,
+    incorrectAnswers: 0,
+    totalAnswers: 0,
+  });
   const allQuizCategories = [
     ...new Set(allQuizzes.map((item) => item.category)),
   ];
@@ -38,6 +43,8 @@ export const AppProvider = ({ children }) => {
         allQuizCategories,
         displayedQuestionIndex,
         setDisplayedQuestionIndex,
+        clickedAnswersResults,
+        setClickedAnswersResults,
       }}
     >
       {children}
