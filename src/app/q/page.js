@@ -10,7 +10,9 @@ export default function q() {
   const { clickedAnswersResults, setClickedAnswersResults } = QuizContext();
 
   if (clickedAnswersResults.totalAnswers === 10 && !showPopUpResults) {
-    setShowPopUpResults(true);
+    setTimeout(() => {
+      setShowPopUpResults(true);
+    }, 2000);
   }
 
   const handleClickedPopUpOk = () => {
