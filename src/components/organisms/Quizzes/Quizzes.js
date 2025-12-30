@@ -3,12 +3,20 @@ import styles from "../Quizzes/Quizzes.module.css";
 import { QuizContext } from "@/context/AppContext";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Quizzes({ category }) {
   const { allQuizzes } = QuizContext();
   const quiz = allQuizzes.filter((q) => q.category === category);
   const ref = useRef(null);
   const [showSwiper, setShowSwiper] = useState({ left: false, right: true });
+
+  const motionProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+    transition: { duration: 0.2 },
+  };
 
   const scroll = (scrollOffset) => {
     ref.current.scrollBy({
@@ -27,11 +35,17 @@ export default function Quizzes({ category }) {
       const max = container.scrollWidth - container.clientWidth;
 
       if (current === 0) {
-        setShowSwiper({ left: false, right: true });
+        setTimeout(() => {
+          setShowSwiper({ left: false, right: true });
+        }, 200);
       } else if (Math.ceil(current) >= max) {
-        setShowSwiper({ left: true, right: false });
+        setTimeout(() => {
+          setShowSwiper({ left: true, right: false });
+        }, 200);
       } else {
-        setShowSwiper({ left: true, right: true });
+        setTimeout(() => {
+          setShowSwiper({ left: true, right: true });
+        }, 200);
       }
     };
 
@@ -56,26 +70,32 @@ export default function Quizzes({ category }) {
         ))}
         {quiz.length > 2 && (
           <>
-            {showSwiper.left && (
-              <Image
-                className={styles.swiperLeft}
-                src={"/images/arrow-small-left.png"}
-                alt="question image"
-                width={30}
-                height={30}
-                onClick={() => scroll(-150)}
-              />
-            )}
-            {showSwiper.right && (
-              <Image
-                className={styles.swiperRight}
-                src={"/images/arrow-small-right.png"}
-                alt="question image"
-                width={30}
-                height={30}
-                onClick={() => scroll(150)}
-              />
-            )}
+            <AnimatePresence mode="sync">
+              {showSwiper.left && (
+                <motion.div key="left-arrow" {...motionProps}>
+                  <Image
+                    className={styles.swiperLeft}
+                    src={"/images/arrow-small-left.png"}
+                    alt="question image"
+                    width={30}
+                    height={30}
+                    onClick={() => scroll(-150)}
+                  />
+                </motion.div>
+              )}
+              {showSwiper.right && (
+                <motion.div key="right-arrow" {...motionProps}>
+                  <Image
+                    className={styles.swiperRight}
+                    src={"/images/arrow-small-right.png"}
+                    alt="question image"
+                    width={30}
+                    height={30}
+                    onClick={() => scroll(150)}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </>
         )}
       </div>
