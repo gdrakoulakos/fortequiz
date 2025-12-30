@@ -13,7 +13,7 @@ export default function quizResults() {
       {selectedQuiz && (
         <div className={styles.quizResultsSection}>
           <div className={styles.questionsInfo}>
-            <h3>
+            <h3 className={styles.quizCategory}>
               {selectedQuiz.category} / {selectedQuiz.subcategory}
             </h3>
             <h3></h3>
