@@ -9,20 +9,23 @@
   border: 1px solid #d5d5d59e;
   box-shadow: 0 0 4px 1px #d5d5d5;
   cursor: pointer;
-  line-height: 17px;
+  transition: background-color 0.5s ease, color 0.3s ease;
 }
 
-.correctAnswer {
-  background: linear-gradient(135deg, #e0ffec, #8affb1);
+.answerButton.correctAnswer {
+  background-color: #b8f5d0;
   color: #0f5132;
 }
 
-.incorrectAnswer {
-  background: linear-gradient(135deg, #ffe6e6, #ffa8a8);
+.answerButton.incorrectAnswer {
+  background-color: #ffcccb;
   color: #7a1c1c;
 }
 
-button:disabled {
-  background-color: #f4f4f4;
+.answerButton:disabled {
   cursor: not-allowed;
+}
+
+.answerButton:disabled:not(.correctAnswer):not(.incorrectAnswer) {
+  background-color: #f4f4f4;
 }
