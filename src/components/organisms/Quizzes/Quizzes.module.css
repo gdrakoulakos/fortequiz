@@ -3,7 +3,8 @@
   flex-direction: row;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: auto;
+  width: 350px;
+  align-items: center;
 }
 
 .cardsContainer::-webkit-scrollbar {
@@ -13,4 +14,28 @@
 .category {
   color: #ffa100;
   text-shadow: 2px 2px 10px #000;
+}
+
+.swiperLeft {
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff9b;
+  padding: 10px;
+  box-shadow: 0 0 3px 2px #ffffff;
+}
+
+.swiperRight {
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff9b;
+  padding: 10px;
+  box-shadow: 0 0 3px 2px #ffffff;
 }
