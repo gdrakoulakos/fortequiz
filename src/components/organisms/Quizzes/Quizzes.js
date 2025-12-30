@@ -30,7 +30,6 @@ export default function Quizzes({ category }) {
         setShowSwiper({ left: false, right: true });
       } else if (Math.ceil(current) >= max) {
         setShowSwiper({ left: true, right: false });
-        console.log("➡️ At END (last pixel)");
       } else {
         setShowSwiper({ left: true, right: true });
       }

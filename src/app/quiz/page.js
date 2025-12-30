@@ -13,7 +13,6 @@ export default function quiz() {
     setClickedAnswersResults,
     displayedQuestionIndex,
   } = QuizContext();
-  console.log("displayedQuestionIndex", displayedQuestionIndex);
 
   const motionProps = {
     initial: { opacity: 0, y: 30 },
