@@ -7,6 +7,7 @@
 
 .questionCounter {
   width: 15%;
+  text-shadow: 1px 1px 6px #a7a7a7;
 }
 
 .quizHeader p {
@@ -32,9 +33,11 @@
   border-radius: 20px;
   padding: 3px 10px;
   text-align: center;
+  text-shadow: 1px 1px 6px #a7a7a7;
 }
 
 .correctAnswers {
   width: 15%;
   text-align: end;
+  text-shadow: 1px 1px 6px #a7a7a7;
 }

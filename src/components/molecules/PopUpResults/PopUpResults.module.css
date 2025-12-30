@@ -26,13 +26,13 @@
   font-size: 25px;
   text-align: center;
   color: #222;
-  text-shadow: 2px 2px 10px #ff7c92;
+  text-shadow: 1px 1px 5px #0000004d;
 }
 
 .resultMessage {
   font-size: medium;
   color: #333;
-  text-shadow: 2px 2px 10px #ff7c92;
+  text-shadow: 1px 1px 5px #0000004d;
 }
 
 .correctAnswers {
@@ -43,7 +43,7 @@
   align-items: center;
   background: linear-gradient(135deg, rgb(210, 61, 236), #6f0c81);
   font-size: 20px;
-  text-shadow: 1px 1px 5px #ff7c92;
+  text-shadow: 1px 1px 5px #000000a9;
   color: white;
   border: solid #d5e6ea;
   box-shadow: 0 0 5px 2px #d5d5d5;
@@ -58,8 +58,8 @@
   background: linear-gradient(135deg, rgb(210, 61, 236), #6f0c81);
   color: white;
   font-size: 14px;
-  text-shadow: 2px 2px 10px #ff7c92;
-
+  text-shadow: 1px 1px 15px #000000;
   box-shadow: 0 0 5px 4px #d5d5d5;
   cursor: pointer;
+  margin-bottom: 10px;
 }

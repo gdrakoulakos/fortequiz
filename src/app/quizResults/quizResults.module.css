@@ -37,6 +37,10 @@
   box-shadow: 0 0 5px 2px #d5d5d5;
 }
 
+.questionBlock h3 {
+  text-shadow: 1px 1px 4px #a7a7a7;
+}
+
 .answersContainer button {
   margin: 5px;
   border-radius: 30px;
@@ -49,6 +53,7 @@
   box-shadow: 0 0 4px 1px #d5d5d5;
   cursor: pointer;
   line-height: 17px;
+  text-shadow: 1px 1px 4px #a7a7a7;
 }
 
 .correctAnswer {

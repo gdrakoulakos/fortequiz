@@ -9,6 +9,7 @@
   border: 1px solid #d5d5d59e;
   box-shadow: 0 0 4px 1px #d5d5d5;
   cursor: pointer;
+  text-shadow: 1px 1px 4px #a7a7a7;
   transition: background-color 0.5s ease, color 0.3s ease;
 }
 
