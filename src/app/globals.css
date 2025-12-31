@@ -20,6 +20,7 @@ body::before {
   background-position: center;
   z-index: -1;
   pointer-events: none;
+  opacity: 0.9;
 }
 
 p {
