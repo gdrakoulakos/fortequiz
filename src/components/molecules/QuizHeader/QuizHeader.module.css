@@ -27,17 +27,36 @@
 .info {
   width: 70%;
   text-align: center;
+  font-size: 18px;
+  /* box-shadow: 0 0 11px 1px #662f8e8c; */
+  border-radius: 20px;
 }
 
 .category {
-  border-radius: 20px;
-  padding: 3px 10px;
   text-align: center;
-  text-shadow: 1px 1px 6px #a7a7a7;
+}
+
+.subcategory {
+  text-align: center;
+  font-size: 16px;
+  color: #555555;
+}
+
+.correctInfoContainer {
+  width: 15%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-end;
+  border-radius: 50px;
+}
+
+.correctInfoContainer p {
+  margin: 0;
 }
 
 .correctAnswers {
-  width: 15%;
-  text-align: end;
+  display: flex;
   text-shadow: 1px 1px 6px #a7a7a7;
 }
