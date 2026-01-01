@@ -8,14 +8,14 @@ export default function ButtonNext({ buttonText, onClick }) {
       key={buttonText}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
       className={styles.buttonContainer}
     >
       <Image
         src={"/images/next.svg"}
         alt="next question"
-        width={30}
-        height={30}
+        width={50}
+        height={50}
         className={styles.buttonImage}
         onClick={onClick}
       />

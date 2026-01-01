@@ -5,8 +5,8 @@
   position: relative;
   cursor: pointer;
   position: absolute;
-  bottom: 25%;
-  right: 10px;
+  bottom: 40%;
+  right: 5px;
   gap: 5px;
 }
 
@@ -17,7 +17,6 @@
   display: flex;
   justify-content: center;
   background-color: #ffffff9b;
-  padding: 10px;
   box-shadow: 0 0 3px 2px #dfdfdf;
 }
 
