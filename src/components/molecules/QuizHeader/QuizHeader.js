@@ -32,7 +32,7 @@ export default function QuizHeader() {
         <Image
           className={styles.correctIcon}
           src={"/images/correct.png"}
-          alt="question image"
+          alt="correct answers icon"
           width={20}
           height={20}
         />

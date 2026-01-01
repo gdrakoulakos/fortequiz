@@ -76,7 +76,7 @@ export default function Quizzes({ category }) {
                   <Image
                     className={styles.swiperLeft}
                     src={"/images/arrow-small-left.png"}
-                    alt="question image"
+                    alt="scroll to left"
                     width={30}
                     height={30}
                     onClick={() => scroll(-150)}
@@ -88,7 +88,7 @@ export default function Quizzes({ category }) {
                   <Image
                     className={styles.swiperRight}
                     src={"/images/arrow-small-right.png"}
-                    alt="question image"
+                    alt="scroll to right"
                     width={30}
                     height={30}
                     onClick={() => scroll(150)}

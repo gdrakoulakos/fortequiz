@@ -1,5 +1,6 @@
 import styles from "./ButtonNext.module.css";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export default function ButtonNext({ buttonText, onClick }) {
   return (
@@ -8,10 +9,17 @@ export default function ButtonNext({ buttonText, onClick }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      className={styles.buttonContainer}
     >
-      <button className={styles.nextButton} onClick={onClick}>
-        {buttonText}
-      </button>
+      <Image
+        src={"/images/next.svg"}
+        alt="next question"
+        width={30}
+        height={30}
+        className={styles.buttonImage}
+        onClick={onClick}
+      />
+      <div className={styles.buttonText}>{buttonText}</div>
     </motion.div>
   );
 }
