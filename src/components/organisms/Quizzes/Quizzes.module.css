@@ -15,6 +15,7 @@
 .category {
   color: #ffa100;
   text-shadow: 2px 2px 10px #000;
+  text-align: center;
 }
 
 .swiperLeft {

@@ -34,7 +34,7 @@ export default function Quizzes({ category }) {
       const current = container.scrollLeft;
       const max = container.scrollWidth - container.clientWidth;
 
-      if (current === 0) {
+      if (current <= 0) {
         setTimeout(() => {
           setShowSwiper({ left: false, right: true });
         }, 200);

@@ -26,18 +26,26 @@ export default function Home() {
   }, []);
 
   return (
-    <motion.div
-      className={styles.homePage}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <WelcomeBanner />
-      {allQuizCategories.map((quiz) => (
-        <div key={quiz}>
-          <Quizzes category={quiz} />
-        </div>
-      ))}
-    </motion.div>
+    <>
+      <motion.div
+        className={styles.homePage}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <WelcomeBanner />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        {allQuizCategories.map((quiz) => (
+          <div key={quiz}>
+            <Quizzes category={quiz} />
+          </div>
+        ))}
+      </motion.div>
+    </>
   );
 }
