@@ -1,6 +1,7 @@
 const { createContext, useContext, useState, useEffect } = require("react");
 import allQuizzes from "../data/quizzesData.json";
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/navigation";
 
 const AppContext = createContext();
 
@@ -20,11 +21,15 @@ export const AppProvider = ({ children }) => {
   ];
   const [cookies, setCookie] = useCookies(["quizId"]);
 
+  const router = useRouter();
+
   useEffect(() => {
     if (!selectedQuizId) {
       const cookieQuizId = cookies.quizId;
       if (cookieQuizId) {
         setSelectedQuizId(cookieQuizId);
+      } else {
+        router.push("/");
       }
       return;
     }

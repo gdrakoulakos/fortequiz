@@ -30,4 +30,5 @@
 
 .answerButton:disabled:not(.correctAnswer):not(.incorrectAnswer) {
   background-color: #f4f4f4;
+  color: #707070;
 }
