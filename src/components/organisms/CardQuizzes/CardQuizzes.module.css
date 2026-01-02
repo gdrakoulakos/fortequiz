@@ -9,7 +9,21 @@
 }
 
 .cardsContainer::-webkit-scrollbar {
-  display: none;
+  height: 9px;
+}
+
+.cardsContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cardsContainer::-webkit-scrollbar-thumb {
+  background-color: #4c3c6d;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px #8c6ec7;
+}
+
+.cardsContainer::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .category {
