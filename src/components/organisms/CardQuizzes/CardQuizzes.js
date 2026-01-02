@@ -26,28 +26,24 @@ export default function CardQuizzes({ category }) {
           />
         ))}
         {quiz.length > 2 && (
-          <>
-            <AnimatePresence mode="sync">
-              {showSwiper.left && (
-                <ButtonSwiper
-                  key="swiper-left"
-                  direction={"left"}
-                  ref={ref}
-                  showSwiper={showSwiper}
-                  setShowSwiper={setShowSwiper}
-                />
-              )}
-              {showSwiper.right && (
-                <ButtonSwiper
-                  key="swiper-right"
-                  direction={"right"}
-                  ref={ref}
-                  showSwiper={showSwiper}
-                  setShowSwiper={setShowSwiper}
-                />
-              )}
-            </AnimatePresence>
-          </>
+          <AnimatePresence mode="sync">
+            {showSwiper.left && (
+              <ButtonSwiper
+                key="swiper-left"
+                direction={"left"}
+                ref={ref}
+                setShowSwiper={setShowSwiper}
+              />
+            )}
+            {showSwiper.right && (
+              <ButtonSwiper
+                key="swiper-right"
+                direction={"right"}
+                ref={ref}
+                setShowSwiper={setShowSwiper}
+              />
+            )}
+          </AnimatePresence>
         )}
       </div>
     </>

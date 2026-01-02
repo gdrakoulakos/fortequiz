@@ -3,18 +3,21 @@ import Image from "next/image";
 import styles from "../ButtonSwiper/ButtonSwiper.module.css";
 import { useEffect } from "react";
 
-export default function ButtonSwiper({
-  direction,
-  ref,
-  showSwiper,
-  setShowSwiper,
-}) {
+export default function ButtonSwiper({ direction, ref, setShowSwiper }) {
   const motionProps = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
     transition: { duration: 0.2 },
   };
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const max = ref.current.scrollWidth - ref.current.clientWidth;
+    if (max === 0) {
+      setShowSwiper({ left: false, right: false });
+    }
+  }, [ref]);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -43,7 +46,7 @@ export default function ButtonSwiper({
     container.addEventListener("scroll", handleScroll);
 
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [showSwiper]);
+  }, []);
 
   const scroll = (scrollOffset) => {
     ref.current.scrollBy({
@@ -58,13 +61,13 @@ export default function ButtonSwiper({
       {...motionProps}
       style={{ [direction]: "10px" }}
       className={styles.swiperButton}
+      onClick={() => scroll(direction === "right" ? 150 : -150)}
     >
       <Image
         src={`/images/arrow-small-${direction}.png`}
         alt={`scroll to ${direction}`}
         width={30}
         height={30}
-        onClick={() => scroll(direction === "right" ? 150 : -150)}
       />
     </motion.div>
   );
