@@ -11,7 +11,7 @@ export default function PopUpResults({ correctAnswers }) {
   const { clickedAnswersResults } = QuizContext();
   const [congratulationsMessage, setCongratulationsMessage] =
     useState("/images/bravo3.png");
-  const [resultImg, setResultImg] = useState("");
+  const [resultImg, setResultImg] = useState("/images/bravo2.png");
   const launchConfetti = useLaunchConfetti;
 
   const totalAnswersLength = clickedAnswersResults.totalAnswers;
