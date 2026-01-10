@@ -4,7 +4,7 @@ export default function LoadingSpinner({ message }) {
   return (
     <div className={styles.loadingSpinnerContainer}>
       <div className={styles.loader} />
-      <p>{message}</p>
+      <p className={styles.loaderMessage}>{message}</p>
     </div>
   );
 }
