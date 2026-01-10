@@ -4,13 +4,15 @@
   display: flex;
   position: sticky;
   top: 0;
-  background-color: #e9e9e9c3;
+  background-color: #ffffff6e;
+  backdrop-filter: blur(2px);
   justify-content: space-between;
   z-index: 1;
   align-content: center;
   align-items: center;
 }
 
-.logoIcon {
-  margin: 15px;
+.logoIcon,
+.loginArea {
+  margin: 10px;
 }

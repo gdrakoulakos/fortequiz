@@ -1,8 +1,8 @@
 const { createContext, useContext, useState, useEffect } = require("react");
-import allQuizzes from "../data/quizzesData.json";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { supabase } from "@/lib/supabase";
 
 const AppContext = createContext();
 
@@ -17,14 +17,50 @@ export const AppProvider = ({ children }) => {
     totalAnswers: 0,
     incorrectAnswersData: [],
   });
-  const allQuizCategories = [
-    ...new Set(allQuizzes.map((item) => item.category)),
-  ];
+
   const [cookies, setCookie] = useCookies(["quizId"]);
   const [userData, setUserData] = useState(null);
+  const [quizCategoriesData, setQuizCategoriesData] = useState([]);
+  const [allQuizQuestions, setAllQuizQuestions] = useState([]);
 
   const router = useRouter();
   const { user, isSignedIn } = useUser();
+
+  const allQuizCategories = [
+    ...new Set(quizCategoriesData.map((quizCategory) => quizCategory.category)),
+  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from("default_quiz_categories")
+        .select("*");
+
+      if (error) {
+        console.error(error);
+      } else {
+        setQuizCategoriesData(data);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from("default_quiz_questions")
+        .select("*");
+
+      if (error) {
+        console.error(error);
+      } else {
+        setAllQuizQuestions(data);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (isSignedIn && user) {
@@ -43,9 +79,26 @@ export const AppProvider = ({ children }) => {
       return;
     }
     if (selectedQuizId) {
-      const foundQuiz = allQuizzes.find((q) => q.id === selectedQuizId);
+      const foundQuiz = allQuizQuestions.filter(
+        (q) => q.quiz_id === selectedQuizId
+      );
 
-      setSelectedQuiz(foundQuiz);
+      if (foundQuiz.length !== 0) {
+        const quizTest = {
+          quiz_id: foundQuiz[0].quiz_id,
+          category: foundQuiz[0].category,
+          subcategory: foundQuiz[0].subcategory,
+          questions: foundQuiz.map((q) => ({
+            id: q.question_id,
+            title: q.question_title,
+            question_img: q.question_img,
+            availableAnswers: [q.answer_1, q.answer_2, q.answer_3, q.answer_4],
+            correctAnswer: q.correct_answer,
+          })),
+        };
+        setSelectedQuiz(quizTest);
+      }
+
       setCookie("quizId", selectedQuizId, { path: "/" });
     }
   }, [selectedQuizId]);
@@ -53,7 +106,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        allQuizzes,
+        quizCategoriesData,
         setSelectedQuizId,
         selectedQuiz,
         allQuizCategories,

@@ -5,6 +5,7 @@ import Image from "next/image";
 export default function QuizHeader() {
   const { selectedQuiz, displayedQuestionIndex, clickedAnswersResults } =
     QuizContext();
+
   const quizCategory = selectedQuiz?.category;
   const quizSubcategory = selectedQuiz?.subcategory;
   const quizQuestionCounter = selectedQuiz?.questions.length;

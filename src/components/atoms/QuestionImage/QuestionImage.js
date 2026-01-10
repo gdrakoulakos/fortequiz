@@ -5,7 +5,7 @@ import styles from "./QuestionImage.module.css";
 
 export default function QuestionImage() {
   const { selectedQuiz, displayedQuestionIndex } = QuizContext();
-  const imgSrc = selectedQuiz?.questions[displayedQuestionIndex]?.img;
+  const imgSrc = selectedQuiz?.questions[displayedQuestionIndex]?.question_img;
 
   if (!imgSrc) {
     return null;

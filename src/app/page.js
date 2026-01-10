@@ -3,9 +3,8 @@ import styles from "./page.module.css";
 import WelcomeBanner from "@/components/organisms/WelcomeBanner/WelcomeBanner";
 import CardQuizzes from "@/components/organisms/CardQuizzes/CardQuizzes";
 import { QuizContext } from "../context/AppContext";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "motion/react";
-import { supabase } from "@/lib/supabase";
 
 export default function Home() {
   const {
@@ -14,23 +13,6 @@ export default function Home() {
     setClickedAnswersResults,
     setShowPopUpResults,
   } = QuizContext();
-  const [rows, setRows] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data, error } = await supabase
-        .from("default_quizzes")
-        .select("*");
-
-      if (error) {
-        console.error(error);
-      } else {
-        setRows(data);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     setDisplayedQuestionIndex(0);

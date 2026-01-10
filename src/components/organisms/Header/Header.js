@@ -19,7 +19,9 @@ export default function Header() {
             />
           </Link>
         </div>
-        <LoginArea />
+        <div className={styles.loginArea}>
+          <LoginArea />
+        </div>
       </header>
     </>
   );

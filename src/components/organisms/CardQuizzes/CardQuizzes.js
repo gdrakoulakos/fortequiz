@@ -6,8 +6,8 @@ import { AnimatePresence } from "motion/react";
 import ButtonSwiper from "@/components/atoms/ButtonSwiper/ButtonSwiper";
 
 export default function CardQuizzes({ category }) {
-  const { allQuizzes } = QuizContext();
-  const quiz = allQuizzes.filter((q) => q.category === category);
+  const { quizCategoriesData } = QuizContext();
+  const quiz = quizCategoriesData.filter((q) => q.category === category);
   const ref = useRef(null);
   const [showSwiper, setShowSwiper] = useState({ left: false, right: true });
 
@@ -17,11 +17,11 @@ export default function CardQuizzes({ category }) {
       <div className={styles.cardsContainer} ref={ref}>
         {quiz.map((card) => (
           <CardQuiz
-            key={card.id}
-            id={card.id}
-            quizCategory={card.quizCategory}
+            key={card.quiz_id}
+            id={card.quiz_id}
+            quizCategory={card.category}
             name={card.subcategory}
-            description={card.description}
+            description={card.quiz_description}
             imgQuiz={card.imgQuiz}
           />
         ))}
