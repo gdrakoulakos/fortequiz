@@ -3,9 +3,10 @@ import styles from "./quiz.module.css";
 import QuizCardQuestion from "@/components/organisms/QuizCardQuestion/QuizCardQuestion";
 import { QuizContext } from "../../context/AppContext";
 import { AnimatePresence, motion } from "motion/react";
+import LoadingSpinner from "@/components/organisms/LoadingSpinner/LoadingSpinner";
 
 export default function quiz() {
-  const { displayedQuestionIndex } = QuizContext();
+  const { displayedQuestionIndex, selectedQuiz } = QuizContext();
 
   const motionProps = {
     initial: { opacity: 0, x: 30 },
@@ -16,15 +17,19 @@ export default function quiz() {
 
   return (
     <>
-      <AnimatePresence mode="wait">
-        <motion.div
-          className={styles.QuizNew}
-          key={displayedQuestionIndex}
-          {...motionProps}
-        >
-          <QuizCardQuestion />
-        </motion.div>
-      </AnimatePresence>
+      {selectedQuiz ? (
+        <AnimatePresence mode="wait">
+          <motion.div
+            className={styles.QuizNew}
+            key={displayedQuestionIndex}
+            {...motionProps}
+          >
+            <QuizCardQuestion />
+          </motion.div>
+        </AnimatePresence>
+      ) : (
+        <LoadingSpinner message="Φόρτωση quiz..." />
+      )}
     </>
   );
 }
