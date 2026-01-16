@@ -22,6 +22,7 @@ export const AppProvider = ({ children }) => {
   const [userData, setUserData] = useState(null);
   const [quizCategoriesData, setQuizCategoriesData] = useState([]);
   const [allQuizQuestions, setAllQuizQuestions] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
 
   const router = useRouter();
   const { user, isSignedIn } = useUser();
@@ -61,6 +62,20 @@ export const AppProvider = ({ children }) => {
 
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const { data, error } = await supabase.from("user_data").select("*");
+
+  //     if (error) {
+  //       console.error(error);
+  //     } else {
+  //       setUserInfo(data);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     if (isSignedIn && user) {
@@ -104,6 +119,8 @@ export const AppProvider = ({ children }) => {
       setCookie("quizId", selectedQuizId, { path: "/" });
     }
   }, [selectedQuizId, allQuizQuestions]);
+
+  // console.log("userInfo", userInfo);
 
   return (
     <AppContext.Provider
