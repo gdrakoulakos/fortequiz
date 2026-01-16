@@ -17,8 +17,8 @@ export default function CardQuizzes({ category }) {
       <div className={styles.cardsContainer} ref={ref}>
         {quiz.map((card) => (
           <CardQuiz
-            key={card.quiz_id}
-            id={card.quiz_id}
+            key={card.quiz_category_id}
+            id={card.quiz_category_id}
             quizCategory={card.category}
             name={card.subcategory}
             description={card.quiz_description}
