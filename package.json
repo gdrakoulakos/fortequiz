@@ -14,10 +14,13 @@
     "@supabase/supabase-js": "^2.90.1",
     "canvas-confetti": "^1.9.3",
     "motion": "^12.23.26",
-    "next": "16.0.10",
+    "next": "^16.1.6",
     "react": "19.2.3",
     "react-cookie": "^8.0.1",
     "react-dom": "19.2.3",
     "stable": "^0.1.8"
+  },
+  "devDependencies": {
+    "baseline-browser-mapping": "^2.9.19"
   }
 }
