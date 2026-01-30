@@ -37,9 +37,15 @@ export default function Home() {
       >
         <WelcomeBanner />
       </motion.div>
-      <div className={styles.allQuizzes}>
+      <motion.div
+        key={"all-quizzes"}
+        className={styles.allQuizzes}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
         <CardQuizzesSection currentInstitutionData={currentInstitutionData} />
-      </div>
+      </motion.div>
     </>
   );
 }
