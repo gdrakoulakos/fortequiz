@@ -9,17 +9,16 @@ export default function Header() {
   return (
     <>
       <header className={styles.menuContainer}>
-        <div className={styles.logoIcon}>
-          <Link href={"/"}>
-            <Image
-              src="/images/logo.png"
-              width={60}
-              height={60}
-              alt="forte quiz logo"
-              loading="eager"
-            />
-          </Link>
-        </div>
+        <Link href={"/"}>
+          <Image
+            className={styles.logoIcon}
+            src="/images/logo/logo-header.png"
+            width={60}
+            height={60}
+            alt="forte quiz logo"
+            loading="eager"
+          />
+        </Link>
         <SignedIn>
           <Link href={"/myQuizzes"} className={styles.myQuizzes}>
             Τα Quiz μου
