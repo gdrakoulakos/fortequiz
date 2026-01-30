@@ -5,29 +5,27 @@ import { useRef, useState } from "react";
 import { AnimatePresence } from "motion/react";
 import ButtonSwiper from "@/components/atoms/ButtonSwiper/ButtonSwiper";
 
-export default function CardQuizzes({ grade }) {
-  const { defaultLessonsData, currentInstitutionData } = QuizContext();
-
-  const quiz = currentInstitutionData?.lessons?.filter(
-    (q) => q.grade_name === grade,
-  );
+export default function CardQuizzes({ grades }) {
   const ref = useRef(null);
   const [showSwiper, setShowSwiper] = useState({ left: false, right: true });
 
   return (
     <>
-      <h1 className={styles.grade}>{grade}</h1>
+      <h1 className={styles.grade}>{grades.grade_name}</h1>
       <div className={styles.cardsContainer} ref={ref}>
-        {quiz.map((card) => (
-          <CardQuiz
-            key={card.lesson_id}
-            id={card.lesson_id}
-            lesson={card.lesson_name}
-            description={card.quiz_description}
-            imgQuiz={card.imgCard}
-          />
+        {grades.lessons.map((lesson) => (
+          <div key={lesson.id}>
+            <CardQuiz
+              key={lesson.id}
+              id={lesson.id}
+              lesson={lesson.lesson_name}
+              description={lesson.quiz_description}
+              imgQuiz={lesson.imgCard}
+            />
+          </div>
         ))}
-        {quiz.length > 2 && (
+
+        {grades.lessons.length > 2 && (
           <AnimatePresence mode="sync">
             {showSwiper.left && (
               <ButtonSwiper

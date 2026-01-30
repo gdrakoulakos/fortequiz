@@ -14,6 +14,7 @@ const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [currentInstitution, setCurrentInstitution] = useState(null);
+  const [defaultQuizData, setDefaultQuizData] = useState([]);
   const [defaultSchoolLevels, setDefaultSchoolLevels] = useState([]);
   const [defaultGrades, setDefaultGrades] = useState([]);
   const [defaultLessons, setDefaultLessons] = useState([]);
@@ -44,45 +45,11 @@ export const AppProvider = ({ children }) => {
   ];
 
   const institutionsDataMap = {
-    default: {
-      schoolLevels: defaultSchoolLevels,
-      grades: defaultGrades,
-      lessons: defaultLessons,
-      questions: defaultQuestions,
-    },
-    athenaeum: {
-      schoolLevels: [],
-      grades: [],
-      lessons: [],
-      questions: [],
-    },
+    default: defaultQuizData,
+    athenaeum: [],
   };
 
-  const currentInstitutionData = useMemo(() => {
-    if (!currentInstitution) {
-      return {
-        schoolLevels: [],
-        grades: [],
-        lessons: [],
-        questions: [],
-      };
-    }
-
-    return (
-      institutionsDataMap[currentInstitution] || {
-        schoolLevels: [],
-        grades: [],
-        lessons: [],
-        questions: [],
-      }
-    );
-  }, [
-    currentInstitution,
-    defaultSchoolLevels,
-    defaultGrades,
-    defaultLessons,
-    defaultQuestions,
-  ]);
+  const currentInstitutionData = institutionsDataMap[currentInstitution] || [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,6 +84,52 @@ export const AppProvider = ({ children }) => {
   }, []);
 
   //Test tables start
+
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        const { data, error } = await supabase.from("default_school_levels")
+          .select(`
+          id,
+          level_name,
+          grades:default_grades (
+            id,
+            grade_name,
+            school_level_id,
+            lessons:default_lessons (
+              id,
+              lesson_name,
+              quiz_description,
+              imgCard,
+              grade_id,
+              questions:default_questions (
+                id,
+                lesson_id,
+                sort_order,
+                question,
+                answer_1,
+                answer_2,
+                answer_3,
+                answer_4,
+                correct_answer,
+                question_img
+              )
+            )
+          )
+        `);
+
+        if (error) {
+          console.error("Error fetching nested data:", error);
+        } else {
+          setDefaultQuizData(data);
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      }
+    };
+
+    fetchAllData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -192,7 +205,7 @@ export const AppProvider = ({ children }) => {
     if (!selectedQuiz) {
       const cookieQuizId = cookies.quizId;
       if (cookieQuizId) {
-        setSelectedQuizId(cookieQuizId);
+        setSelectedQuizId(null);
       } else {
         router.push("/");
       }
@@ -200,7 +213,7 @@ export const AppProvider = ({ children }) => {
   }, [selectedQuiz]);
 
   useEffect(() => {
-    if (selectedQuizId && currentInstitutionData.questions.length > 0) {
+    if (selectedQuizId && currentInstitutionData.length > 0) {
       const foundQuiz = currentInstitutionData?.questions?.filter(
         (q) => q.lesson_id === selectedQuizId,
       );

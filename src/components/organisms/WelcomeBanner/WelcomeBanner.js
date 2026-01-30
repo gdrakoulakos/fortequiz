@@ -11,7 +11,7 @@ export default function WelcomeBanner() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        forteQuiz!
+        Quizakos!
       </motion.div>
       <motion.div
         className={styles.welcomeText}
