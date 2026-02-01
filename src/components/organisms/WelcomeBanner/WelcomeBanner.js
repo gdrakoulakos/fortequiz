@@ -13,7 +13,7 @@ export default function WelcomeBanner() {
       >
         <Image
           className={styles.forteQuiz}
-          src="/images/logo/logo2.png"
+          src="/images/logo/logo-5.png"
           width={350}
           height={281}
           alt="forte quiz logo"

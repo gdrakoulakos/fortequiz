@@ -17,9 +17,9 @@ export default function Header() {
       <Link href={"/"}>
         <Image
           className={styles.logoIcon}
-          src="/images/logo/logo-header.png"
-          width={60}
-          height={60}
+          src="/images/quizakos/quizakos11.png"
+          width={40}
+          height={40}
           alt="forte quiz logo"
           loading="eager"
         />
