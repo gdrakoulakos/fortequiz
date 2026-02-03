@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { motion } from "motion/react";
 import CardQuizzesSection from "@/components/templates/CardQuizzesSection/CardQuizzesSection";
 import LoadingSpinner from "@/components/organisms/LoadingSpinner/LoadingSpinner";
+import Anouncements from "@/components/organisms/Anouncements/Anouncements";
 
 export default function Home() {
   const {
@@ -32,6 +33,7 @@ export default function Home() {
 
   return (
     <>
+      <Anouncements />
       <motion.div
         className={styles.homePage}
         initial={{ opacity: 0 }}
