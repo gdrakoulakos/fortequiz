@@ -22,20 +22,20 @@ export default function Anouncements() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!showAnnouncement) {
-    return null;
-  }
-
   return (
-    showAnnouncement && (
-      <AnimatePresence mode="wait">
-        <motion.div className={styles.announcementsContainer} {...motionProps}>
+    <AnimatePresence mode="wait">
+      {showAnnouncement && (
+        <motion.div
+          className={styles.announcementsContainer}
+          {...motionProps}
+          key={"announcementsContainer"}
+        >
           <p className={styles.announcementText}>
             Ο Quizakos βρίσκεται σε στάδιο ανάπτυξης και οι ερωτήσεις περιέχουν
             λάθη.
           </p>
         </motion.div>
-      </AnimatePresence>
-    )
+      )}
+    </AnimatePresence>
   );
 }
