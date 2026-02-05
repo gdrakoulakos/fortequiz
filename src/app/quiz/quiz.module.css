@@ -1,3 +1,7 @@
-.QuizNew {
-  padding: 10px;
+.quizSection {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

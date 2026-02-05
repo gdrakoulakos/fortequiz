@@ -29,8 +29,6 @@ export default function Home() {
     setShowPopUpResults(false);
   }, []);
 
-  console.log("currentInstitutionData,", currentInstitutionData?.length);
-
   return (
     <>
       <Anouncements />

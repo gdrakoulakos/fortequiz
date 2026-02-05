@@ -31,8 +31,8 @@ export default function Anouncements() {
           key={"announcementsContainer"}
         >
           <p className={styles.announcementText}>
-            Ο Quizakos βρίσκεται σε στάδιο ανάπτυξης και οι ερωτήσεις περιέχουν
-            λάθη.
+            Ο Quizakos μας βρίσκεται σε στάδιο ανάπτυξης και οι ερωτήσεις του
+            μπορεί να περιέχουν λάθη. Λίγη υπομονή...
           </p>
         </motion.div>
       )}

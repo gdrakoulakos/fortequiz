@@ -19,13 +19,15 @@ export default function quiz() {
     <>
       {selectedQuiz ? (
         <AnimatePresence mode="wait">
-          <motion.div
-            className={styles.QuizNew}
-            key={displayedQuestionIndex}
-            {...motionProps}
-          >
-            <QuizCardQuestion />
-          </motion.div>
+          <div className={styles.quizSection}>
+            <motion.div
+              className={styles.quizNew}
+              key={displayedQuestionIndex}
+              {...motionProps}
+            >
+              <QuizCardQuestion />
+            </motion.div>
+          </div>
         </AnimatePresence>
       ) : (
         <LoadingSpinner message="Φόρτωση quiz..." />
