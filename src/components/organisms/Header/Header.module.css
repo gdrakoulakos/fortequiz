@@ -2,8 +2,8 @@
   width: 100vw;
   height: 60px;
   display: flex;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  bottom: 0;
   background-color: #ffffffa8;
   backdrop-filter: blur(2px);
   justify-content: space-around;
