@@ -169,7 +169,8 @@ export const AppProvider = ({ children }) => {
       if (error) {
         console.error(error);
       } else {
-        setDefaultQuestions(data);
+        const shuffled = [...data].sort(() => Math.random() - 0.5);
+        setDefaultQuestions(shuffled);
       }
     };
 
@@ -211,6 +212,8 @@ export const AppProvider = ({ children }) => {
       const gradeName = lessonGrade.grade_name;
 
       if (foundQuizQuestions.length !== 0) {
+        console.log("foundQuizQuestions", foundQuizQuestions);
+
         const quizTest = {
           quiz_id: selectedQuizId,
           grade: gradeName,
@@ -219,7 +222,12 @@ export const AppProvider = ({ children }) => {
             id: q.sort_order,
             title: q.question,
             question_img: q.question_img,
-            availableAnswers: [q.answer_1, q.answer_2, q.answer_3, q.answer_4],
+            availableAnswers: [
+              q.answer_1,
+              q.answer_2,
+              q.answer_3,
+              q.answer_4,
+            ].sort(() => Math.random() - 0.5),
             correctAnswer: q.correct_answer,
           })),
         };
