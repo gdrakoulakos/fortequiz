@@ -24,7 +24,7 @@ export default function Header() {
     },
     {
       name: "Πληροφορίες",
-      href: "/comingSoon",
+      href: "/info",
       icon: <InfoIcon fontSize="medium" />,
     },
     {

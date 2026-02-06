@@ -1,0 +1,23 @@
+.infoSection {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoBody {
+  background: linear-gradient(
+    70deg,
+    #665980f3 0%,
+    #59428cf1 50%,
+    #50338ef5 100%
+  );
+  box-shadow: 0 0 2px 3px #d5d5d5;
+  padding: 0 20px;
+  border-radius: 20px;
+}
+
+.infoBody p {
+  color: white;
+  font-size: 14px;
+}
