@@ -14,7 +14,8 @@ export default function info() {
       <div className={styles.infoBody}>
         <p>
           Το Quizakos! είναι μια πλατφόρμα που δημιουργήθηκε με στόχο να φέρει
-          τα παιδιά του Δημοτικού πιο κοντά στη μάθηση μέσα από το παιχνίδι.
+          τα παιδιά του Δημοτικού και των Ωδείων πιο κοντά στη μάθηση μέσα από
+          το παιχνίδι.
         </p>
         <p>
           Με διαδραστικά quizzes, το παιδί μαθαίνει και επαναλαμβάνει την ύλη με
@@ -35,6 +36,9 @@ export default function info() {
           Αν έχετε οποιαδήποτε απορία ή θέλετε να επικοινωνήσετε με τον Quizako
           😊, μπορείτε να στείλετε email στο <strong>quizakos@gmail.com</strong>
           .
+        </p>
+        <p>
+          {new Date().getFullYear()} George Drakoulakos. All Rights Reserved.
         </p>
       </div>
     </motion.div>
