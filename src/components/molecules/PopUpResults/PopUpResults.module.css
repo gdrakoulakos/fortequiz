@@ -21,6 +21,7 @@
   position: relative;
   box-shadow: 0 0 5px 2px #d5d5d5;
   overflow: hidden;
+  max-width: 310px;
 }
 
 .popUpResultsContainer::before {

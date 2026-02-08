@@ -1,7 +1,6 @@
 import { commissioner } from "./fonts";
 import "./globals.css";
 import Header from "@/components/organisms/Header/Header";
-import Footer from "@/components/organisms/Footer/Footer";
 import { Providers } from "./providers";
 
 export default function RootLayout({ children }) {
@@ -11,7 +10,6 @@ export default function RootLayout({ children }) {
         <Providers>
           <Header />
           {children}
-          <Footer />
         </Providers>
       </body>
     </html>

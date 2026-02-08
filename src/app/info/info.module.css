@@ -15,9 +15,15 @@
   box-shadow: 0 0 2px 3px #d5d5d5;
   padding: 0 20px;
   border-radius: 20px;
+  max-width: 310px;
 }
 
 .infoBody p {
   color: white;
   font-size: 15px;
+}
+
+.copyRights {
+  margin-top: 30px;
+  text-align: center;
 }

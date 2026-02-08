@@ -8,6 +8,7 @@ body {
   padding: 0;
   margin: 0;
   background: none;
+  padding-bottom: 60px;
 }
 
 body::before {

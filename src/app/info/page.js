@@ -37,8 +37,9 @@ export default function info() {
           😊, μπορείτε να στείλετε email στο <strong>quizakos@gmail.com</strong>
           .
         </p>
-        <p>
-          {new Date().getFullYear()} George Drakoulakos. All Rights Reserved.
+        <p className={styles.copyRights}>
+          {new Date().getFullYear()} George Drakoulakos <br /> All Rights
+          Reserved
         </p>
       </div>
     </motion.div>
