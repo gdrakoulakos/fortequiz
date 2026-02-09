@@ -1,6 +1,6 @@
 import { commissioner } from "./fonts";
 import "./globals.css";
-import Header from "@/components/organisms/Header/Header";
+import TabBar from "@/components/organisms/TabBar/TabBar";
 import { Providers } from "./providers";
 
 export default function RootLayout({ children }) {
@@ -8,7 +8,7 @@ export default function RootLayout({ children }) {
     <html lang="el">
       <body className={commissioner.className}>
         <Providers>
-          <Header />
+          <TabBar />
           {children}
         </Providers>
       </body>
