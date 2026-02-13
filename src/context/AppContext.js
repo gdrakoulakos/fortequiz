@@ -1,6 +1,4 @@
 const { createContext, useContext, useState, useEffect } = require("react");
-import { useCookies } from "react-cookie";
-import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { supabase } from "@/lib/supabase";
 

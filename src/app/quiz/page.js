@@ -6,16 +6,20 @@ import { AnimatePresence, motion } from "motion/react";
 import LoadingSpinner from "@/components/organisms/LoadingSpinner/LoadingSpinner";
 import { useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useCookies } from "react-cookie";
 
 export default function quiz() {
   const {
     selectedQuiz,
     setDefaultQuestions,
     selectedQuizId,
+    setSelectedQuizId,
     defaultQuestions,
     setSelectedQuiz,
     displayedQuestionIndex,
   } = QuizContext();
+
+  const [cookies, ,] = useCookies(["quiz_id"]);
 
   const motionProps = {
     initial: { opacity: 0, x: 30 },
@@ -50,12 +54,15 @@ export default function quiz() {
   }, []);
 
   useEffect(() => {
+    if (!selectedQuizId) {
+      setSelectedQuizId(cookies.quiz_id);
+    }
+
     if (!selectedQuizId || !defaultQuestions?.length) return;
     if (selectedQuiz) return;
     const foundQuizQuestions = defaultQuestions.filter(
       (q) => q.lesson_id === selectedQuizId,
     );
-    console.log("foundQuizQuestions", foundQuizQuestions);
 
     const lessonName = foundQuizQuestions[0].lesson.lesson_name;
     const gradeName = foundQuizQuestions[0].lesson.grade.grade_name;
@@ -81,8 +88,6 @@ export default function quiz() {
       setSelectedQuiz(quizTest);
     }
   }, [defaultQuestions, selectedQuizId]);
-
-  console.log("selectedQuiz", selectedQuiz);
 
   return (
     <>
