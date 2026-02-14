@@ -12,11 +12,12 @@ export default function WelcomeBanner() {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         <Image
-          className={styles.forteQuiz}
+          className={styles.quizakosLogo}
           src="/images/logo/logo-5.png"
           width={350}
           height={281}
-          alt="forte quiz logo"
+          alt="quizakos logo"
+          loading="eager"
         />
       </motion.div>
       <motion.div

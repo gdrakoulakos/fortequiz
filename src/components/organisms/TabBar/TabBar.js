@@ -55,7 +55,7 @@ export default function TabBar() {
           src="/images/quizakos/quizakos11.png"
           width={40}
           height={40}
-          alt="forte quiz logo"
+          alt="quizakosLogo logo"
           loading="eager"
         />
       </Link>
