@@ -8,7 +8,7 @@ import { QuizContext } from "@/context/AppContext";
 import { useLaunchConfetti } from "@/customHooks";
 
 export default function PopUpResults({ correctAnswers }) {
-  const { clickedAnswersResults } = QuizContext();
+  const { clickedAnswersResults, selectedQuizId } = QuizContext();
   const [congratulationsMessage, setCongratulationsMessage] = useState(null);
   const [resultImg, setResultImg] = useState("/images/quizakos/guizakos1.png");
   const [hoppingEffect, setHoppingEffect] = useState(false);
@@ -17,6 +17,30 @@ export default function PopUpResults({ correctAnswers }) {
   const totalAnswersLength = clickedAnswersResults.totalAnswers;
   const correctAnswersLength = clickedAnswersResults.correctAnswers;
   const scorePercentage = (correctAnswersLength / totalAnswersLength) * 100;
+
+  useEffect(() => {
+    if (!selectedQuizId) return;
+
+    const storedResults = localStorage.getItem("quiz_results");
+    const storedResultsArray = storedResults ? JSON.parse(storedResults) : [];
+    const newResults = { lesson_id: selectedQuizId, score: scorePercentage };
+    const lessonExistsInStoredResults = storedResultsArray.find(
+      (lesson) => lesson.lesson_id === selectedQuizId,
+    );
+
+    if (!lessonExistsInStoredResults) {
+      const updatedResults = [...storedResultsArray, newResults];
+      localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+    } else if (
+      lessonExistsInStoredResults &&
+      lessonExistsInStoredResults.score < scorePercentage
+    ) {
+      const updatedResults = storedResultsArray.map((lesson) =>
+        lesson.lesson_id === selectedQuizId ? newResults : lesson,
+      );
+      localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+    }
+  }, [selectedQuizId, scorePercentage]);
 
   useEffect(() => {
     if (scorePercentage === 100) {
@@ -31,7 +55,7 @@ export default function PopUpResults({ correctAnswers }) {
       setCongratulationsMessage("Μπράβο! Τα πήγες εξαιρετικά!");
     } else if (scorePercentage >= 60) {
       setResultImg("/images/quizakos/guizakos3.png");
-      setCongratulationsMessage("Καλά τα πήγες! Συνέχισε έτσι!");
+      setCongratulationsMessage("Τα πήγες πολύ καλά! Συνέχισε έτσι!");
     } else if (scorePercentage >= 40) {
       setResultImg("/images/quizakos/guizakos2.png");
       setCongratulationsMessage("Ωραία προσπάθεια! Μπορείς και καλύτερα!");
