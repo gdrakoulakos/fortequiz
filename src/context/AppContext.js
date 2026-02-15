@@ -13,6 +13,7 @@ export const AppProvider = ({ children }) => {
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [displayedQuestionIndex, setDisplayedQuestionIndex] = useState(0);
   const [showPopUpResults, setShowPopUpResults] = useState(false);
+  const [userProgressData, setUserProgressData] = useState([]);
   const [clickedAnswersResults, setClickedAnswersResults] = useState({
     correctAnswers: 0,
     incorrectAnswers: 0,
@@ -24,10 +25,15 @@ export const AppProvider = ({ children }) => {
 
   const { user, isSignedIn } = useUser();
 
-  const localStoredUserProgress = localStorage.getItem("quiz_results");
-  const userProgressData = localStoredUserProgress
-    ? JSON.parse(localStoredUserProgress)
-    : [];
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localStoredUserProgress = localStorage.getItem("quiz_results");
+      const progressData = localStoredUserProgress
+        ? JSON.parse(localStoredUserProgress)
+        : [];
+      setUserProgressData(progressData);
+    }
+  }, []);
 
   const institutionsDataMap = {
     default: defaultQuizData,

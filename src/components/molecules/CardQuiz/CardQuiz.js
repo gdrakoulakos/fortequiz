@@ -3,6 +3,7 @@ import styles from "../CardQuiz/CardQuiz.module.css";
 import QuizImage from "@/components/atoms/QuizImage/QuizImage";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { QuizContext } from "@/context/AppContext";
 
 export default function CardQuiz({
   id,
@@ -11,12 +12,11 @@ export default function CardQuiz({
   imgQuiz,
   totalQuestions,
 }) {
+  const { userProgressData } = QuizContext();
   const [completedQuiz, setCompletedQuiz] = useState(false);
   const [starsCounter, setStarsCounter] = useState(0);
   const [gainedMedal, setGainedMedal] = useState({ gained: false, medal: "" });
-  const storedResults = localStorage.getItem("quiz_results");
-  const storedResultsArray = storedResults ? JSON.parse(storedResults) : [];
-  const lessonExistsInStoredResults = storedResultsArray.find(
+  const lessonExistsInStoredResults = userProgressData.find(
     (lesson) => lesson.lesson_id === id,
   );
 
