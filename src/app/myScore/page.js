@@ -8,16 +8,15 @@ import { motion } from "motion/react";
 export default function myScore() {
   const { userProgressData } = QuizContext();
   const motionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
     transition: { duration: 0.3 },
   };
 
   return (
     <motion.div className={styles.scoreSection} {...motionProps}>
       <h1>Το σκορ μου</h1>
-      {userProgressData ? (
+      {userProgressData.length !== 0 ? (
         <CardsScore />
       ) : (
         <>

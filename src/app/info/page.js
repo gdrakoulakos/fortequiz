@@ -8,7 +8,7 @@ export default function info() {
       className={styles.infoSection}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.4 }}
     >
       <h1>Πληροφορίες</h1>
       <div className={styles.infoBody}>

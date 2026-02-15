@@ -38,6 +38,7 @@ export default function PopUpResults({ correctAnswers, lessonAndGrade }) {
     if (!lessonExistsInStoredResults) {
       const updatedResults = [...userProgressData, newResults];
       localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+      window.dispatchEvent(new Event("quiz_results_updated"));
     } else if (
       lessonExistsInStoredResults &&
       lessonExistsInStoredResults.score < scorePercentage
@@ -52,6 +53,7 @@ export default function PopUpResults({ correctAnswers, lessonAndGrade }) {
           : lesson,
       );
       localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+      window.dispatchEvent(new Event("quiz_results_updated"));
     } else if (
       lessonExistsInStoredResults &&
       lessonExistsInStoredResults.score >= scorePercentage
@@ -65,6 +67,7 @@ export default function PopUpResults({ correctAnswers, lessonAndGrade }) {
           : lesson,
       );
       localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+      window.dispatchEvent(new Event("quiz_results_updated"));
     }
   }, [selectedQuizId, scorePercentage]);
 

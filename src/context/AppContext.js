@@ -26,13 +26,19 @@ export const AppProvider = ({ children }) => {
   const { user, isSignedIn } = useUser();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    const loadProgress = () => {
       const localStoredUserProgress = localStorage.getItem("quiz_results");
       const progressData = localStoredUserProgress
         ? JSON.parse(localStoredUserProgress)
         : [];
       setUserProgressData(progressData);
-    }
+    };
+
+    loadProgress();
+
+    window.addEventListener("quiz_results_updated", loadProgress);
+    return () =>
+      window.removeEventListener("quiz_results_updated", loadProgress);
   }, []);
 
   const institutionsDataMap = {
