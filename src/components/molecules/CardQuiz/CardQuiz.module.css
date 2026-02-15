@@ -17,7 +17,7 @@
   scroll-snap-align: start;
   width: 130px;
   padding: 10px 0;
-  gap: 10px;
+  gap: 15px;
   color: white;
   position: relative;
   overflow: visible;
@@ -59,7 +59,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .cardBottom h3 {
