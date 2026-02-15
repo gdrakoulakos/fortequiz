@@ -25,6 +25,7 @@ export default function QuestionAndAnswersCard() {
   });
 
   const totalQuestionsAnswered = clickedAnswersResults.totalAnswers;
+  const lessonAndGrade = `${selectedQuiz.lesson} ${selectedQuiz.grade}`;
 
   const availableAnswers =
     selectedQuiz?.questions[displayedQuestionIndex]?.availableAnswers;
@@ -80,6 +81,7 @@ export default function QuestionAndAnswersCard() {
         <PopUpResults
           correctAnswers={`${clickedAnswersResults.correctAnswers} /
                     ${clickedAnswersResults.totalAnswers}`}
+          lessonAndGrade={lessonAndGrade}
         />
       )}
       <div className={styles.questionContainer}>

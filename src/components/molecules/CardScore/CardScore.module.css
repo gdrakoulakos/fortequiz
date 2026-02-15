@@ -1,0 +1,63 @@
+.scoreCard {
+  box-sizing: border-box;
+  background: linear-gradient(
+    70deg,
+    #665980f3 0%,
+    #59428cf1 50%,
+    #50338ef5 100%
+  );
+  box-shadow: 0 0 2px 3px #d5d5d5;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 10px;
+  border-radius: 20px;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 18px;
+  width: 100%;
+  color: #f3b359;
+  text-align: center;
+  text-shadow: 1px 1px 12px #000;
+}
+
+.scoreCardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+  text-shadow: 1px 1px 12px #000;
+}
+
+.bodyBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.statusCompleted {
+  color: #77ff80;
+}
+
+.starsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.medal {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}

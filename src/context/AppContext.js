@@ -24,6 +24,11 @@ export const AppProvider = ({ children }) => {
 
   const { user, isSignedIn } = useUser();
 
+  const localStoredUserProgress = localStorage.getItem("quiz_results");
+  const userProgressData = localStoredUserProgress
+    ? JSON.parse(localStoredUserProgress)
+    : [];
+
   const institutionsDataMap = {
     default: defaultQuizData,
     athenaeum: [],
@@ -93,6 +98,7 @@ export const AppProvider = ({ children }) => {
         userData,
         numberOfQuestions,
         setNumberOfQuestions,
+        userProgressData,
       }}
     >
       {children}

@@ -3,12 +3,13 @@ import styles from "./PopUpResults.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { QuizContext } from "@/context/AppContext";
 import { useLaunchConfetti } from "@/customHooks";
 
-export default function PopUpResults({ correctAnswers }) {
-  const { clickedAnswersResults, selectedQuizId } = QuizContext();
+export default function PopUpResults({ correctAnswers, lessonAndGrade }) {
+  const { clickedAnswersResults, selectedQuizId, userProgressData } =
+    QuizContext();
   const [congratulationsMessage, setCongratulationsMessage] = useState(null);
   const [resultImg, setResultImg] = useState("/images/quizakos/guizakos1.png");
   const [hoppingEffect, setHoppingEffect] = useState(false);
@@ -18,33 +19,48 @@ export default function PopUpResults({ correctAnswers }) {
   const correctAnswersLength = clickedAnswersResults.correctAnswers;
   const scorePercentage = (correctAnswersLength / totalAnswersLength) * 100;
 
-  useEffect(() => {
-    if (!selectedQuizId) return;
+  const hasStoredResult = useRef(false);
 
-    const storedResults = localStorage.getItem("quiz_results");
-    const storedResultsArray = storedResults ? JSON.parse(storedResults) : [];
+  useEffect(() => {
+    if (!selectedQuizId || hasStoredResult.current) return;
+    hasStoredResult.current = true;
+
     const newResults = {
       lesson_id: selectedQuizId,
       score: scorePercentage,
       stars: scorePercentage,
+      lesson_and_grade: lessonAndGrade,
     };
-    const lessonExistsInStoredResults = storedResultsArray.find(
+    const lessonExistsInStoredResults = userProgressData.find(
       (lesson) => lesson.lesson_id === selectedQuizId,
     );
 
     if (!lessonExistsInStoredResults) {
-      const updatedResults = [...storedResultsArray, newResults];
+      const updatedResults = [...userProgressData, newResults];
       localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
     } else if (
       lessonExistsInStoredResults &&
       lessonExistsInStoredResults.score < scorePercentage
     ) {
-      const updatedResults = storedResultsArray.map((lesson) =>
+      const updatedResults = userProgressData.map((lesson) =>
         lesson.lesson_id === selectedQuizId
           ? {
               ...lesson,
               score: scorePercentage,
-              stars: lesson.stars + scorePercentage,
+              stars: Number(lesson.stars) + scorePercentage,
+            }
+          : lesson,
+      );
+      localStorage.setItem("quiz_results", JSON.stringify(updatedResults));
+    } else if (
+      lessonExistsInStoredResults &&
+      lessonExistsInStoredResults.score >= scorePercentage
+    ) {
+      const updatedResults = userProgressData.map((lesson) =>
+        lesson.lesson_id === selectedQuizId
+          ? {
+              ...lesson,
+              stars: Number(lesson.stars) + scorePercentage,
             }
           : lesson,
       );

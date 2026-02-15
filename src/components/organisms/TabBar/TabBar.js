@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "../TabBar/TabBar.module.css";
 import { motion } from "motion/react";
 import HomeIcon from "@mui/icons-material/Home";
-import HistoryIcon from "@mui/icons-material/History";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import InfoIcon from "@mui/icons-material/Info";
 
@@ -15,9 +15,9 @@ export default function TabBar() {
       icon: <HomeIcon fontSize="medium" />,
     },
     {
-      name: "Ιστορικό",
-      href: "/comingSoon",
-      icon: <HistoryIcon fontSize="medium" />,
+      name: "Τα σκορ μου",
+      href: "/myScore",
+      icon: <EmojiEventsIcon fontSize="medium" />,
     },
     {
       name: "Πληροφορίες",
